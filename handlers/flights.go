@@ -4,12 +4,12 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"arrivals-service/models"
+	"in-flight-service/models"
 )
 
 // GetArrivingFlights retrieves arriving flight information
-func GetArrivingFlights(w http.ResponseWriter, r *http.Request) {
-	flights, err := models.FetchArrivingFlights()
+func GetInFlights(w http.ResponseWriter, r *http.Request) {
+	flights, err := models.FetchInFlights()
 	if err != nil {
 		http.Error(w, "Unable to fetch arriving flights", http.StatusInternalServerError)
 		return

@@ -17,7 +17,7 @@ RUN go mod download
 COPY . .
 
 # Build the Go binary
-RUN go build -o arrivals-service .
+RUN go build -o in-flight-service .
 
 # Stage 2: Create a minimal image with the compiled binary
 FROM alpine:latest
@@ -26,10 +26,10 @@ FROM alpine:latest
 WORKDIR /root/
 
 # Copy the compiled binary from the builder stage
-COPY --from=builder /app/arrivals-service .
+COPY --from=builder /app/in-flight-service .
 
 # Expose the port your Go service will listen on
-EXPOSE 8080
+EXPOSE 8083
 
 # Run the Go binary
-CMD ["./arrivals-service"]
+CMD ["./in-flight-service"]

@@ -1,8 +1,8 @@
 package models
 
 import (
-	"arrivals-service/config"
 	"fmt"
+	"in-flight-service/config"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
@@ -12,16 +12,17 @@ import (
 // Flight represents an arriving flight
 type Flight struct {
 	FlightID    string `json:"flight_id"`
-	ArrivalTime string `json:"arrival_time"`
 	Origin      string `json:"origin"`
+	Destination string `json:"destination"`
+	ArrivalTime string `json:"arrival_time"`
 	Status      string `json:"status"`
 }
 
 // FetchArrivingFlights retrieves flights from the DynamoDB table
-func FetchArrivingFlights() ([]Flight, error) {
+func FetchInFlights() ([]Flight, error) {
 	svc := config.GetDynamoDBClient()
 	input := &dynamodb.ScanInput{
-		TableName: aws.String("ArrivingFlights"),
+		TableName: aws.String("InFlight"),
 	}
 
 	result, err := svc.Scan(input)

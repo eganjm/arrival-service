@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"arrivals-service/handlers"
+	"in-flight-service/handlers"
 
 	"github.com/gorilla/mux"
 )
@@ -16,10 +16,10 @@ func main() {
 	r.Use(corsMiddleware)
 
 	// Define routes
-	r.HandleFunc("/arrivals", handlers.GetArrivingFlights).Methods("GET")
+	r.HandleFunc("/in-flight", handlers.GetInFlights).Methods("GET")
 
-	log.Println("Starting server on :8082")
-	log.Fatal(http.ListenAndServe(":8082", r))
+	log.Println("Starting server on :8083")
+	log.Fatal(http.ListenAndServe(":8083", r))
 }
 
 // CORS Middleware

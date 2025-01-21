@@ -1,4 +1,4 @@
-module arrivals-service
+module in-flight-service
 
 go 1.22
 
